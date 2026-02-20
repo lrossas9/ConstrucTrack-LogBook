@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.constructrack.bitacora.controller.RegistroController" spacing="12" alignment="CENTER" stylesheets="@../styles.css">
+    <padding>
+        <Insets top="24" right="28" bottom="24" left="28" />
+    </padding>
+    <Label text="Registrar usuario" styleClass="title" />
+    <TextField fx:id="nombreField" promptText="Nombre" />
+    <TextField fx:id="correoField" promptText="Correo" />
+    <PasswordField fx:id="contrasenaField" promptText="Contraseña" />
+    <PasswordField fx:id="confirmarField" promptText="Confirmar contraseña" />
+    <HBox spacing="10" alignment="CENTER_RIGHT">
+        <children>
+            <Button text="Cancelar" onAction="#handleCancelar" />
+            <Button text="Registrar" onAction="#handleRegistrar" />
+        </children>
+    </HBox>
+</VBox>

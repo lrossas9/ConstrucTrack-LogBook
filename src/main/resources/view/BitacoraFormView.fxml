@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.*?>
+
+<VBox xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
+    fx:controller="com.constructrack.bitacora.controller.BitacoraFormController" spacing="10" stylesheets="@../styles.css">
+    <padding>
+        <Insets top="12" right="12" bottom="12" left="12" />
+    </padding>
+    <children>
+        <GridPane hgap="10" vgap="8">
+            <columnConstraints>
+                <ColumnConstraints minWidth="120"/>
+                <ColumnConstraints prefWidth="260"/>
+            </columnConstraints>
+            <children>
+                <Label text="Fecha" GridPane.rowIndex="0" GridPane.columnIndex="0" />
+                <DatePicker fx:id="fechaPicker" GridPane.rowIndex="0" GridPane.columnIndex="1" />
+
+                <Label text="Clima" GridPane.rowIndex="1" GridPane.columnIndex="0" />
+                <ComboBox fx:id="climaCombo" GridPane.rowIndex="1" GridPane.columnIndex="1" />
+
+                <Label text="Jornada" GridPane.rowIndex="2" GridPane.columnIndex="0" />
+                <ComboBox fx:id="jornadaCombo" GridPane.rowIndex="2" GridPane.columnIndex="1" />
+
+                <Label text="Actividades" GridPane.rowIndex="3" GridPane.columnIndex="0" />
+                <TextArea fx:id="actividadesArea" GridPane.rowIndex="3" GridPane.columnIndex="1" prefRowCount="2" />
+
+                <Label text="Personal" GridPane.rowIndex="4" GridPane.columnIndex="0" />
+                <TextArea fx:id="personalArea" GridPane.rowIndex="4" GridPane.columnIndex="1" prefRowCount="2" />
+
+                <Label text="Equipos" GridPane.rowIndex="5" GridPane.columnIndex="0" />
+                <TextArea fx:id="equiposArea" GridPane.rowIndex="5" GridPane.columnIndex="1" prefRowCount="2" />
+
+                <Label text="Materiales" GridPane.rowIndex="6" GridPane.columnIndex="0" />
+                <TextArea fx:id="materialesArea" GridPane.rowIndex="6" GridPane.columnIndex="1" prefRowCount="2" />
+
+                <Label text="Avance (%)" GridPane.rowIndex="7" GridPane.columnIndex="0" />
+                <TextField fx:id="avanceField" GridPane.rowIndex="7" GridPane.columnIndex="1" />
+
+                <Label text="Observaciones" GridPane.rowIndex="8" GridPane.columnIndex="0" />
+                <TextArea fx:id="observacionesArea" GridPane.rowIndex="8" GridPane.columnIndex="1" prefRowCount="2" />
+
+                <Label text="Firma" GridPane.rowIndex="9" GridPane.columnIndex="0" />
+                <TextField fx:id="firmaField" GridPane.rowIndex="9" GridPane.columnIndex="1" />
+
+                <Label text="Imagen" GridPane.rowIndex="10" GridPane.columnIndex="0" />
+                <HBox spacing="6" alignment="CENTER_LEFT" GridPane.rowIndex="10" GridPane.columnIndex="1">
+                    <children>
+                        <Button text="Cargar" onAction="#handleCargarImagen" />
+                        <ImageView fx:id="imagenPreview" fitHeight="80" fitWidth="120" preserveRatio="true" />
+                    </children>
+                </HBox>
+            </children>
+        </GridPane>
+        <HBox spacing="10" alignment="CENTER_RIGHT">
+            <children>
+                <Button text="Guardar" onAction="#handleGuardar" />
+                <Button text="Cancelar" onAction="#handleCancelar" />
+            </children>
+        </HBox>
+    </children>
+</VBox>

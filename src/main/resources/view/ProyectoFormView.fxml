@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
+    fx:controller="com.constructrack.bitacora.controller.ProyectoFormController" spacing="10">
+    <padding>
+        <Insets top="15" right="15" bottom="15" left="15" />
+    </padding>
+    <children>
+        <GridPane hgap="10" vgap="10">
+            <columnConstraints>
+                <ColumnConstraints minWidth="100"/>
+                <ColumnConstraints prefWidth="250"/>
+            </columnConstraints>
+            <children>
+                <Label text="Nombre" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+                <TextField fx:id="nombreField" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+
+                <Label text="Ubicación" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+                <TextField fx:id="ubicacionField" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+
+                <Label text="Constructora" GridPane.rowIndex="2" GridPane.columnIndex="0"/>
+                <TextField fx:id="constructoraField" GridPane.rowIndex="2" GridPane.columnIndex="1"/>
+
+                <Label text="Interventoría" GridPane.rowIndex="3" GridPane.columnIndex="0"/>
+                <TextField fx:id="interventoriaField" GridPane.rowIndex="3" GridPane.columnIndex="1"/>
+
+                <Label text="Contrato" GridPane.rowIndex="4" GridPane.columnIndex="0"/>
+                <TextField fx:id="contratoField" GridPane.rowIndex="4" GridPane.columnIndex="1"/>
+
+                <Label text="Fecha inicio" GridPane.rowIndex="5" GridPane.columnIndex="0"/>
+                <DatePicker fx:id="fechaInicioPicker" GridPane.rowIndex="5" GridPane.columnIndex="1"/>
+
+                <Label text="Fecha fin" GridPane.rowIndex="6" GridPane.columnIndex="0"/>
+                <DatePicker fx:id="fechaFinPicker" GridPane.rowIndex="6" GridPane.columnIndex="1"/>
+
+                <Label text="Estado" GridPane.rowIndex="7" GridPane.columnIndex="0"/>
+                <TextField fx:id="estadoField" GridPane.rowIndex="7" GridPane.columnIndex="1"/>
+            </children>
+        </GridPane>
+        <HBox spacing="10" alignment="CENTER_RIGHT">
+            <children>
+                <Button text="Guardar" onAction="#handleGuardar" />
+                <Button text="Cancelar" onAction="#handleCancelar" />
+            </children>
+        </HBox>
+    </children>
+</VBox>

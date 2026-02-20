@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.constructrack.bitacora.controller.BitacoraListController">
+    <top>
+        <HBox spacing="10" alignment="CENTER_RIGHT">
+            <padding>
+                <Insets top="10" right="10" bottom="10" left="10" />
+            </padding>
+            <children>
+                <Button text="Nueva" onAction="#handleNueva" />
+                <Button text="Editar" onAction="#handleEditar" />
+                <Button text="Eliminar" onAction="#handleEliminar" />
+                <Button text="Exportar PDF" onAction="#handleExportarPdf" />
+            </children>
+        </HBox>
+    </top>
+    <center>
+        <TableView fx:id="tablaBitacoras">
+            <columns>
+                <TableColumn fx:id="colFecha" text="Fecha" prefWidth="140" />
+                <TableColumn fx:id="colClima" text="Clima" prefWidth="120" />
+                <TableColumn fx:id="colAvance" text="Avance (%)" prefWidth="120" />
+            </columns>
+        </TableView>
+    </center>
+</BorderPane>
