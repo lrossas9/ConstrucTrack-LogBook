@@ -3,35 +3,91 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<BorderPane xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="com.constructrack.bitacora.controller.DashboardController">
-    <top>
-        <HBox spacing="10" alignment="CENTER_RIGHT">
-            <padding><Insets top="10" right="10" bottom="10" left="10"/></padding>
+<AnchorPane xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.constructrack.bitacora.controller.DashboardController"
+            styleClass="dashboard-root">
+    <children>
+        <StackPane AnchorPane.topAnchor="0" AnchorPane.bottomAnchor="0" AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0" styleClass="dashboard-background">
             <children>
-                <Button text="Nuevo Proyecto" onAction="#handleNuevoProyecto" />
-                <Button text="Editar" onAction="#handleEditarProyecto" />
-                <Button text="Eliminar" onAction="#handleEliminarProyecto" />
-                <Button text="Cerrar sesión" onAction="#handleLogout" />
+                <VBox styleClass="dashboard-overlay" spacing="14" fillWidth="true">
+                    <HBox styleClass="dashboard-header" alignment="CENTER" spacing="16">
+                        <HBox alignment="CENTER_LEFT" spacing="10" HBox.hgrow="ALWAYS">
+                            <children>
+                                <VBox spacing="2">
+                                    <Label text="ConstrucTrack" styleClass="logo-title" />
+                                    <Label text="Gestion Inteligente para la Construccion" styleClass="logo-slogan" />
+                                </VBox>
+                            </children>
+                        </HBox>
+                        <HBox styleClass="user-block" spacing="8" alignment="CENTER_RIGHT">
+                            <VBox spacing="2">
+                                <Label text="Bienvenido" styleClass="user-name" />
+                                <Label text="Administrador" styleClass="user-role" />
+                            </VBox>
+                            <Button text="Cerrar sesion" onAction="#handleLogout" styleClass="quick-btn" />
+                        </HBox>
+                    </HBox>
+
+                    <HBox styleClass="dashboard-nav">
+                        <children>
+                            <Button text="Proyectos" styleClass="nav-button" />
+                            <Button text="Seguimiento" styleClass="nav-button" />
+                            <Button text="Reportes" styleClass="nav-button" />
+                        </children>
+                    </HBox>
+
+                    <HBox styleClass="dashboard-main" spacing="14">
+                        <children>
+                            <VBox styleClass="card-grid" VBox.vgrow="ALWAYS" HBox.hgrow="ALWAYS" spacing="10">
+                                <children>
+                                    <Label text="Proyectos" styleClass="section-title" />
+                                    <HBox styleClass="action-bar">
+                                        <children>
+                                            <Button text="Nuevo" onAction="#handleNuevoProyecto" styleClass="quick-btn" />
+                                            <Button text="Editar" onAction="#handleEditarProyecto" styleClass="quick-btn" />
+                                            <Button text="Eliminar" onAction="#handleEliminarProyecto" styleClass="quick-btn" />
+                                        </children>
+                                    </HBox>
+                                    <VBox styleClass="table-card" VBox.vgrow="ALWAYS">
+                                        <TableView fx:id="tablaProyectos" VBox.vgrow="ALWAYS">
+                                            <columns>
+                                                <TableColumn fx:id="colNombre" text="Nombre" prefWidth="220" />
+                                                <TableColumn fx:id="colUbicacion" text="Ubicacion" prefWidth="220" />
+                                                <TableColumn fx:id="colEstado" text="Estado" prefWidth="160" />
+                                            </columns>
+                                        </TableView>
+                                    </VBox>
+                                    <HBox alignment="CENTER_RIGHT">
+                                        <Button text="Ver Bitacora" onAction="#handleVerBitacora" styleClass="quick-btn" />
+                                    </HBox>
+                                </children>
+                            </VBox>
+
+                            <VBox styleClass="sidebar" spacing="10">
+                                <children>
+                                    <VBox styleClass="widget">
+                                        <Label text="Alertas y Novedades" styleClass="widget-title" />
+                                        <Label text="- Retraso en entrega de materiales" styleClass="widget-text" />
+                                        <Label text="- Personal ausente" styleClass="widget-text" />
+                                    </VBox>
+                                    <VBox styleClass="widget" spacing="6">
+                                        <Label text="Metricas Clave" styleClass="widget-title" />
+                                        <Label text="Proyectos activos" styleClass="widget-text" />
+                                        <Label text="5" styleClass="kpi-value" />
+                                        <Label text="Reportes pendientes" styleClass="widget-text" />
+                                        <Label text="3" styleClass="kpi-value" />
+                                    </VBox>
+                                    <VBox styleClass="widget" spacing="8">
+                                        <Label text="Acciones Rapidas" styleClass="widget-title" />
+                                        <Button text="Registrar reporte diario" styleClass="quick-btn" />
+                                        <Button text="Subir evidencia" styleClass="quick-btn" />
+                                    </VBox>
+                                </children>
+                            </VBox>
+                        </children>
+                    </HBox>
+                </VBox>
             </children>
-        </HBox>
-    </top>
-    <center>
-        <TableView fx:id="tablaProyectos">
-            <columns>
-                <TableColumn fx:id="colNombre" text="Nombre" prefWidth="200" />
-                <TableColumn fx:id="colUbicacion" text="Ubicación" prefWidth="200" />
-                <TableColumn fx:id="colEstado" text="Estado" prefWidth="120" />
-            </columns>
-        </TableView>
-    </center>
-    <bottom>
-        <HBox spacing="10" alignment="CENTER_RIGHT">
-            <padding><Insets top="10" right="10" bottom="10" left="10"/></padding>
-            <children>
-                <Button text="Ver Bitácora" onAction="#handleVerBitacora" />
-            </children>
-        </HBox>
-    </bottom>
-    
-</BorderPane>
+        </StackPane>
+    </children>
+</AnchorPane>

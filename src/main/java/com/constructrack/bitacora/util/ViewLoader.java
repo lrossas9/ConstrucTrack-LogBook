@@ -15,6 +15,7 @@ public class ViewLoader {
         try {
             Parent root = FXMLLoader.load(ViewLoader.class.getResource(fxmlPath));
             Scene scene = new Scene(root);
+            addStyles(scene);
             stage.setTitle(title);
             stage.setScene(scene);
             stage.show();
@@ -36,12 +37,23 @@ public class ViewLoader {
         if (owner != null) {
             stage.initOwner(owner);
         }
-        stage.setScene(new Scene(root));
+        Scene scene = new Scene(root);
+        addStyles(scene);
+        stage.setScene(scene);
         stage.showAndWait();
         return loader;
     }
 
     public static FXMLLoader modal(String fxmlPath, String title) throws IOException {
         return modal(fxmlPath, title, null);
+    }
+
+    private static void addStyles(Scene scene) {
+        try {
+            String css = ViewLoader.class.getResource("/styles.css").toExternalForm();
+            scene.getStylesheets().add(css);
+        } catch (Exception ignored) {
+            // If the stylesheet is missing, do nothing to avoid breaking the UI.
+        }
     }
 }

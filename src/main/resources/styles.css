@@ -31,3 +31,175 @@
     -fx-background-radius: 8;
     -fx-effect: dropshadow(one-pass-box, rgba(0,0,0,0.08), 8, 0, 0, 2);
 }
+
+/* Dashboard moderno */
+.dashboard-root {
+    -fx-background-color: transparent;
+}
+
+.dashboard-background {
+    -fx-background-color: transparent;
+    -fx-background-image: url("images/constructrack.jpg");
+    -fx-background-repeat: no-repeat;
+    -fx-background-size: cover;
+    -fx-background-position: center center;
+    -fx-background-insets: 0;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.22), 24, 0.2, 0, 8);
+}
+
+.dashboard-overlay {
+    -fx-padding: 24;
+    -fx-spacing: 18;
+    -fx-background-color: rgba(5, 8, 15, 0.10);
+}
+
+.dashboard-header {
+    -fx-alignment: center;
+    -fx-spacing: 16;
+    -fx-padding: 12 18 12 18;
+    -fx-background-color: rgba(8, 12, 24, 0.55);
+    -fx-border-color: rgba(255,255,255,0.10);
+    -fx-border-width: 0 0 1 0;
+}
+
+.logo-title {
+    -fx-font-size: 24px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #e9f5ff;
+}
+
+.logo-slogan {
+    -fx-text-fill: #cfe5ff;
+    -fx-font-size: 13px;
+}
+
+.user-block {
+    -fx-alignment: center-right;
+    -fx-spacing: 6;
+}
+
+.user-name {
+    -fx-text-fill: #e8ecff;
+    -fx-font-weight: bold;
+}
+
+.user-role {
+    -fx-text-fill: #9fb3ff;
+    -fx-font-size: 12px;
+}
+
+.dashboard-nav {
+    -fx-spacing: 12;
+}
+
+.nav-button {
+    -fx-background-color: rgba(255,255,255,0.14);
+    -fx-text-fill: #f4f7ff;
+    -fx-font-weight: bold;
+    -fx-background-radius: 10;
+    -fx-padding: 10 16 10 16;
+    -fx-border-color: rgba(255,255,255,0.08);
+    -fx-border-radius: 10;
+}
+
+.nav-button:hover {
+    -fx-background-color: #61dafb;
+    -fx-text-fill: #0b1021;
+}
+
+.dashboard-main {
+    -fx-spacing: 16;
+}
+
+.card-grid {
+    -fx-spacing: 12;
+    -fx-background-color: rgba(8, 12, 24, 0.48);
+    -fx-padding: 16;
+    -fx-background-radius: 12;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.25), 18, 0.2, 0, 10);
+}
+
+.section-title {
+    -fx-text-fill: #e8ecff;
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+}
+
+.action-bar {
+    -fx-spacing: 10;
+}
+
+.table-card {
+    -fx-background-color: rgba(4, 6, 12, 0.55);
+    -fx-background-radius: 10;
+    -fx-padding: 6;
+    -fx-effect: innershadow(gaussian, rgba(0,0,0,0.28), 12, 0.15, 0, 2);
+}
+
+.table-view {
+    -fx-background-color: transparent;
+    -fx-control-inner-background: rgba(10, 16, 32, 0.78);
+    -fx-table-cell-border-color: rgba(255,255,255,0.05);
+    -fx-table-header-border-color: rgba(255,255,255,0.10);
+    -fx-border-color: rgba(255,255,255,0.10);
+    -fx-text-fill: #f4f7ff;
+}
+
+.table-view .column-header-background {
+    -fx-background-color: rgba(255,255,255,0.06);
+}
+
+.table-view .column-header, .table-view .filler {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+}
+
+.table-view .table-row-cell:filled:hover {
+    -fx-background-color: rgba(97, 218, 251, 0.18);
+}
+
+.table-view .table-row-cell:filled:selected {
+    -fx-background-color: rgba(97, 218, 251, 0.28);
+}
+
+.sidebar {
+    -fx-min-width: 260;
+    -fx-max-width: 320;
+    -fx-spacing: 12;
+}
+
+.widget {
+    -fx-background-color: rgba(8, 12, 24, 0.52);
+    -fx-background-radius: 12;
+    -fx-padding: 14;
+    -fx-spacing: 8;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 12, 0.15, 0, 6);
+}
+
+.widget-title {
+    -fx-text-fill: #e8ecff;
+    -fx-font-weight: bold;
+}
+
+.widget-text {
+    -fx-text-fill: #d8e6ff;
+}
+
+.kpi-value {
+    -fx-text-fill: #7be3ff;
+    -fx-font-size: 22px;
+    -fx-font-weight: bold;
+}
+
+.quick-btn {
+    -fx-background-color: linear-gradient(to right, #1a237e, #3949ab);
+    -fx-text-fill: white;
+    -fx-background-radius: 10;
+    -fx-padding: 10 14 10 14;
+    -fx-font-weight: bold;
+}
+
+.quick-btn:hover {
+    -fx-background-color: #61dafb;
+    -fx-text-fill: #0b1021;
+}
