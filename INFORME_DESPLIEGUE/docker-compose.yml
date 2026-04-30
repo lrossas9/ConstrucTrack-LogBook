@@ -1,0 +1,95 @@
+version: '3.8'
+
+services:
+  # ============================================
+  # Servicio de Base de Datos MySQL
+  # ============================================
+  mysql:
+    image: mysql:8.0
+    container_name: constructrack-mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: root123
+      MYSQL_DATABASE: constructrack_logbook
+      MYSQL_USER: constructrack
+      MYSQL_PASSWORD: constructrack123
+      MYSQL_ROOT_HOST: '%'
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+      - ./sql/schema.sql:/docker-entrypoint-initdb.d/01-schema.sql
+    networks:
+      - constructrack-network
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-u", "root", "-proot123"]
+      timeout: 20s
+      retries: 5
+      interval: 10s
+    restart: unless-stopped
+    command: --default-authentication-plugin=mysql_native_password --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
+
+  # ============================================
+  # Servicio de Servidor Web Apache
+  # ============================================
+  apache:
+    image: httpd:2.4-alpine
+    container_name: constructrack-apache
+    ports:
+      - "80:80"
+    volumes:
+      - ./apache-config/httpd.conf:/usr/local/apache2/conf/httpd.conf:ro
+      - ./apache-config/constructrack.conf:/usr/local/apache2/conf.d/constructrack.conf:ro
+    depends_on:
+      - app
+    networks:
+      - constructrack-network
+    restart: unless-stopped
+
+  # ============================================
+  # Servicio Aplicación Java ConstrucTrack
+  # ============================================
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: constructrack-app
+    environment:
+      DB_HOST: mysql
+      DB_PORT: 3306
+      DB_NAME: constructrack_logbook
+      DB_USER: constructrack
+      DB_PASSWORD: constructrack123
+      JAVA_OPTS: "-Xmx512m -Xms256m"
+    ports:
+      - "8080:8080"
+    depends_on:
+      mysql:
+        condition: service_healthy
+    volumes:
+      - ./logs:/app/logs
+      - ./app-config:/app/config
+    networks:
+      - constructrack-network
+    restart: unless-stopped
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+
+# ============================================
+# Definición de Volúmenes
+# ============================================
+volumes:
+  mysql_data:
+    driver: local
+
+# ============================================
+# Definición de Red
+# ============================================
+networks:
+  constructrack-network:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.20.0.0/16

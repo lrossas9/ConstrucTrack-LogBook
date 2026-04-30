@@ -31,8 +31,8 @@
                     <HBox styleClass="dashboard-nav">
                         <children>
                             <Button text="Proyectos" styleClass="nav-button" />
-                            <Button text="Seguimiento" styleClass="nav-button" />
-                            <Button text="Reportes" styleClass="nav-button" />
+                            <Button text="Seguimiento" styleClass="nav-button" onAction="#handleSeguimiento" />
+                            <Button fx:id="reportesButton" text="Reportes (0)" styleClass="nav-button" onAction="#handleReportes" />
                         </children>
                     </HBox>
 
@@ -73,14 +73,14 @@
                                     <VBox styleClass="widget" spacing="6">
                                         <Label text="Metricas Clave" styleClass="widget-title" />
                                         <Label text="Proyectos activos" styleClass="widget-text" />
-                                        <Label text="5" styleClass="kpi-value" />
-                                        <Label text="Reportes pendientes" styleClass="widget-text" />
-                                        <Label text="3" styleClass="kpi-value" />
+                                        <Label fx:id="lblProyectosActivos" text="0" styleClass="kpi-value" />
+                                        <Label text="Bitacoras del proyecto" styleClass="widget-text" />
+                                        <Label fx:id="lblReportesPendientes" text="0" styleClass="kpi-value" />
                                     </VBox>
                                     <VBox styleClass="widget" spacing="8">
                                         <Label text="Acciones Rapidas" styleClass="widget-title" />
-                                        <Button text="Registrar reporte diario" styleClass="quick-btn" />
-                                        <Button text="Subir evidencia" styleClass="quick-btn" />
+                                        <Button text="Registrar reporte diario" styleClass="quick-btn" onAction="#handleRegistrarReporteRapido" />
+                                        <Button text="Subir evidencia" styleClass="quick-btn" onAction="#handleSubirEvidencia" />
                                     </VBox>
                                 </children>
                             </VBox>

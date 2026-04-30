@@ -1,0 +1,42 @@
+[Unit]
+Description=ConstrucTrack LogBook Application Service
+Documentation=file:///opt/constructrack/README.md
+After=network.target mysql.service apache2.service
+Wants=mysql.service apache2.service
+
+[Service]
+Type=simple
+User=constructrack
+Group=constructrack
+WorkingDirectory=/opt/constructrack
+
+# Configuración de memoria JVM
+Environment="JAVA_OPTS=-Xmx512m -Xms256m -XX:+UseG1GC"
+Environment="DB_HOST=127.0.0.1"
+Environment="DB_PORT=3306"
+Environment="DB_NAME=constructrack_logbook"
+Environment="DB_USER=constructrack"
+Environment="DB_PASSWORD=constructrack123"
+
+# Comando de inicio
+ExecStart=/usr/lib/jvm/java-17-openjdk-amd64/bin/java \
+    ${JAVA_OPTS} \
+    -jar /opt/constructrack/target/constructrack-bitacora-1.0.0.jar
+
+# Reinicio automático en caso de fallo
+Restart=on-failure
+RestartSec=10
+StartLimitInterval=60
+StartLimitBurst=3
+
+# Límites de recursos
+LimitNOFILE=65535
+LimitNPROC=65535
+
+# Logs
+StandardOutput=journal
+StandardError=journal
+SyslogIdentifier=constructrack
+
+[Install]
+WantedBy=multi-user.target

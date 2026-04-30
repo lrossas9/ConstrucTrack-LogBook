@@ -51,6 +51,17 @@ CREATE TABLE IF NOT EXISTS bitacoras (
     fecha_registro DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
     CONSTRAINT fk_bitacora_proyecto FOREIGN KEY (id_proyecto) REFERENCES proyectos(id) ON DELETE CASCADE
 );
+
+-- Evidencias asociadas a una bitacora. Almacena metadatos y ruta del archivo.
+CREATE TABLE IF NOT EXISTS evidencias (
+    id BIGINT AUTO_INCREMENT PRIMARY KEY,
+    id_bitacora BIGINT NOT NULL,
+    nombre_archivo VARCHAR(255) NOT NULL,
+    ruta_archivo VARCHAR(500) NOT NULL,
+    content_type VARCHAR(120),
+    fecha_subida TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (id_bitacora) REFERENCES bitacoras(id) ON DELETE CASCADE
+);
 CREATE INDEX idx_bitacoras_proyecto_fecha ON bitacoras(id_proyecto, fecha DESC);
 
 -- Semilla admin (si no existe)

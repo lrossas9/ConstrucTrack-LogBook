@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ConstrucTrack LogBook - Gestión de Proyectos de Construcción</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        header {
+            background: linear-gradient(135deg, #031525 0%, #092b45 100%);
+            color: white;
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+        }
+
+        nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            letter-spacing: 2px;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .logo img {
+            height: 40px;
+            width: auto;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 2rem;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            transition: opacity 0.3s;
+        }
+
+        nav a:hover {
+            opacity: 0.8;
+        }
+
+        .hero {
+            background: linear-gradient(180deg, rgba(1, 18, 40, 0.88), rgba(1, 18, 40, 0.88)), url('constructrack.jpg') center/cover no-repeat;
+            color: white;
+            padding: 6rem 2rem;
+            text-align: center;
+            min-height: 80vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+
+        .hero:before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: rgba(1, 18, 40, 0.45);
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 900px;
+        }
+
+        .hero-logo {
+            margin-bottom: 1.5rem;
+        }
+
+        .hero-logo img {
+            width: 160px;
+            max-width: 100%;
+            border-radius: 18px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.28);
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            animation: fadeInUp 1s ease;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            opacity: 0.95;
+            max-width: 640px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: #031525;
+            color: white;
+            padding: 1rem 2.5rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: transform 0.3s, box-shadow 0.3s;
+            box-shadow: 0 4px 15px rgba(1, 18, 40, 0.35);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(1, 18, 40, 0.5);
+        }
+
+        .section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            text-align: center;
+            color: #031525;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .section {
+            padding: 4rem 0;
+        }
+
+        .section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            text-align: center;
+            color: #031525;
+        }
+
+        .services {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .service-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+        }
+
+        .service-card h3 {
+            color: #031525;
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+
+        .service-card p {
+            color: #666;
+            line-height: 1.8;
+        }
+
+        .icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .features {
+            background: #f8f9fa;
+        }
+
+        .feature-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .feature-item {
+            display: flex;
+            gap: 1rem;
+            align-items: flex-start;
+        }
+
+        .feature-item::before {
+            content: "✓";
+            color: #031525;
+            font-size: 1.5rem;
+            font-weight: bold;
+            flex-shrink: 0;
+        }
+
+        .testimonials {
+            background: white;
+        }
+
+        .testimonial {
+            background: #f8f9fa;
+            padding: 2rem;
+            border-radius: 10px;
+            margin-top: 1.5rem;
+            border-left: 4px solid #667eea;
+        }
+
+        .testimonial-author {
+            font-weight: bold;
+            color: #031525;
+            margin-top: 1rem;
+        }
+
+        footer {
+            background: #333;
+            color: white;
+            text-align: center;
+            padding: 2rem;
+            margin-top: 3rem;
+        }
+
+        footer p {
+            margin: 0.5rem 0;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            nav ul {
+                gap: 1rem;
+            }
+
+            .section h2 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <nav>
+            <div class="logo">
+                <img src="constructrack.jpg" alt="ConstrucTrack Logo">
+                🏗️ ConstrucTrack
+            </div>
+            <ul>
+                <li><a href="#caracteristicas">Características</a></li>
+                <li><a href="#tecnologia">Tecnología</a></li>
+                <li><a href="#descarga">Descargar</a></li>
+                <li><a href="#contacto">Contacto</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <div class="hero-logo">
+                <img src="constructrack.jpg" alt="Logotipo ConstrucTrack">
+            </div>
+            <h1>ConstrucTrack LogBook</h1>
+            <p>Sistema integral de gestión de bitácoras para proyectos de construcción. Registra, monitorea y documenta cada etapa de tu obra.</p>
+            <a href="#descarga" class="cta-button">Descargar Ahora</a>
+        </div>
+    </section>
+
+    <!-- Características Principales -->
+    <section class="section" id="caracteristicas">
+        <div class="container">
+            <h2>Características Principales</h2>
+            <div class="services">
+                <div class="service-card">
+                    <div class="icon">📋</div>
+                    <h3>Gestión de Bitácoras</h3>
+                    <p>Registra detalles diarios de tu proyecto incluyendo actividades, personal, materiales y eventos importantes de cada jornada.</p>
+                </div>
+                <div class="service-card">
+                    <div class="icon">📸</div>
+                    <h3>Evidencia Fotográfica</h3>
+                    <p>Adjunta fotos y evidencia visual de cada etapa del proyecto para documentación y seguimiento completo.</p>
+                </div>
+                <div class="service-card">
+                    <div class="icon">📊</div>
+                    <h3>Reportes Automáticos</h3>
+                    <p>Genera reportes profesionales en PDF con todos los datos registrados. Exporta información para análisis y auditoría.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Especificaciones Técnicas -->
+    <section class="section features" id="tecnologia">
+        <div class="container">
+            <h2>Especificaciones Técnicas</h2>
+            <div class="feature-list">
+                <div class="feature-item">
+                    <div>
+                        <strong>Tecnología: Java 17</strong>
+                        <p>Lenguaje robusto y multiplataforma</p>
+                    </div>
+                </div>
+                <div class="feature-item">
+                    <div>
+                        <strong>Framework: JavaFX 21</strong>
+                        <p>Interfaz gráfica moderna y responsiva</p>
+                    </div>
+                </div>
+                <div class="feature-item">
+                    <div>
+                        <strong>Base de Datos: MySQL 8.0</strong>
+                        <p>Almacenamiento seguro y confiable</p>
+                    </div>
+                </div>
+                <div class="feature-item">
+                    <div>
+                        <strong>Reportes: OpenPDF</strong>
+                        <p>Generación profesional de PDFs</p>
+                    </div>
+                </div>
+                <div class="feature-item">
+                    <div>
+                        <strong>Seguridad: BCrypt</strong>
+                        <p>Encriptación de contraseñas</p>
+                    </div>
+                </div>
+                <div class="feature-item">
+                    <div>
+                        <strong>Patrón: MVC</strong>
+                        <p>Arquitectura profesional y escalable</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Beneficios -->
+    <section class="section testimonials" id="beneficios">
+        <div class="container">
+            <h2>Beneficios para tu Proyecto</h2>
+            
+            <div class="testimonial">
+                <p><strong>📊 Documentación Completa:</strong> Cada día de obra queda registrado con detalles específicos, facilitando auditorías y análisis histórico del proyecto.</p>
+                <div class="testimonial-author">Mejora la trazabilidad</div>
+            </div>
+
+            <div class="testimonial">
+                <p><strong>🔍 Control y Seguimiento:</strong> Monitorea avances en tiempo real, identifica retrasos y toma decisiones basadas en datos concretos.</p>
+                <div class="testimonial-author">Optimiza la gestión</div>
+            </div>
+
+            <div class="testimonial">
+                <p><strong>📋 Cumplimiento Normativo:</strong> Mantén registros que cumplen con normativas de construcción y estándares de calidad requisitos de supervisión.</p>
+                <div class="testimonial-author">Garantiza legalidad</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Descarga -->
+    <section class="section" id="descarga" style="background: #f8f9fa;">
+        <div class="container" style="text-align: center;">
+            <h2>Descarga ConstrucTrack LogBook</h2>
+            <p style="font-size: 1.1rem; color: #666; margin: 1.5rem 0;">
+                Descarga el instalador de la aplicación ConstrucTrack LogBook y revisa la documentación para la configuración con Java 17 y MySQL 8.0.
+            </p>
+            <a href="../../target/constructrack-bitacora-1.0.0.jar" class="cta-button" style="font-size: 1.1rem; padding: 1.2rem 3rem;" download>⬇️ Descargar JAR (v1.0.0)</a>
+            <p style="margin-top: 1.5rem; color: #999; font-size: 0.9rem;">
+                Para instrucciones de instalación y guía de uso, consulta la documentación incluida en el proyecto.
+            </p>
+        </div>
+    </section>
+
+    <!-- Contacto -->
+    <section class="section" id="contacto" style="background: white;">
+        <div class="container">
+            <h2>Información del Proyecto</h2>
+            <div class="services" style="grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1.5rem;">
+                <div class="service-card" style="text-align: center;">
+                    <h3 style="color: #0a3d62; margin-bottom: 1rem;">📦 Versión</h3>
+                    <p>1.0.0 Estable</p>
+                </div>
+                <div class="service-card" style="text-align: center;">
+                    <h3 style="color: #0a3d62; margin-bottom: 1rem;">👥 Desarrollador</h3>
+                    <p>SENA Tecnólogo en Software</p>
+                </div>
+                <div class="service-card" style="text-align: center;">
+                    <h3 style="color: #0a3d62; margin-bottom: 1rem;">📧 Contacto</h3>
+                    <p>constructrack@ejemplo.com</p>
+                </div>
+                <div class="service-card" style="text-align: center;">
+                    <h3 style="color: #0a3d62; margin-bottom: 1rem;">📅 Lanzamiento</h3>
+                    <p>Abril 2026</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2026 ConstrucTrack LogBook. Todos los derechos reservados.</p>
+        <p>Desarrollado por <strong>SENA Tecnólogo en Análisis y Desarrollo de Software</strong> | Evidencia GA10-220501097-AA6-EV01</p>
+    </footer>
+</body>
+</html>
